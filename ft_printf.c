@@ -6,13 +6,11 @@
 /*   By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 08:10:02 by skohtake          #+#    #+#             */
-/*   Updated: 2024/05/10 14:00:41 by skohtake         ###   ########.fr       */
+/*   Updated: 2024/05/11 12:25:07 by skohtake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_printf(const char *input, ...);
+#include "ft_printf.h"
 
 int	ft_printf(const char *input, ...)
 {

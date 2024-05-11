@@ -6,7 +6,7 @@
 #    By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 11:04:36 by yonuma            #+#    #+#              #
-#    Updated: 2024/05/10 11:08:09 by skohtake         ###   ########.fr        #
+#    Updated: 2024/05/11 12:13:44 by skohtake         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ INCLUDES = -I libft
 
 
 $(NAME) : $(OBJS)
+	$(MAKE) -C ./libft
 	ar rc $@ $^
 	ranlib $(NAME)
 
@@ -35,11 +36,17 @@ all : $(NAME)
 	$(CC) $(CFLAGS) $^ -o $@ $(INCLUDES)
 
 clean : 
+	$(MAKE) clean -C ./libft
 	$(RM) $(OBJS)
 
 fclean : clean
+	$(MAKE) fclean -C ./libft
 	$(RM) $(NAME)
 
 re : fclean all
 
 .PHONY : all clean fclean re
+
+# removing required below
+test : $(NAME)
+	cc test_main.c -o TEST $(NAME)
