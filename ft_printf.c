@@ -6,38 +6,77 @@
 /*   By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 08:10:02 by skohtake          #+#    #+#             */
-/*   Updated: 2024/05/11 14:52:33 by skohtake         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:54:58 by skohtake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *input, ...)
+// decide process according identifier
+int	my_process_id(char id, va_list list)
 {
-	va_list	ap;
-	char	*save;
-	char	*tmp;
-	int		i;
+	int	res;
 
-	save = ft_strdup(input);
-	va_start(ap, input);
-	i = 1;
-	while (i--)
+	res = 0;
+	if (id == 'c')
 	{
-		tmp = save;
-		save = ft_strjoin(save, (char *)va_arg(ap, char *));
-		write(1, "\n", 1);
-		ft_putstr_fd(save, 1);
+		res = my_print_char()
 	}
-	va_end(ap);
-	return (0);
+	if (id == 's')
+	{
+	}
+	if (id == 'p')
+	{
+	}
+	if (id == 'd')
+	{
+	}
+	if (id == 'i')
+	{
+	}
+	if (id == '%')
+	{
+	}
+	return (res);
 }
 
-/*
-・引数の数
-・引数の型
-を指定してあげる必要がある。
-->第一引数から計算しておく必要がある。
-※引数の数が多いのは問題ないが、引数の数が少ないとエラーになる。
-*/
+//
+int	my_count_res(char *format, va_list list)
+{
+	int	res;
+	int	index;
 
+	res = 0;
+	index = 0;
+	while (format[index] != '\0')
+	{
+		if (format[index] == '%')
+		{
+			index++;
+			res += my_process_id(format[index], list);
+		}
+		else if (format[index] != '\0')
+		{
+			res += write(1, format + index, 1);
+		}
+		index++;
+	}
+	return (res);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	va_list	list;
+	char	*dup;
+	int		index;
+	int		res_len;
+
+	dup = ft_strdup(format);
+	if (dup == NULL)
+		return (0);
+	va_start(list, format);
+	res_len = my_count_res(dup, list);
+	va_end(list);
+	free(dup);
+	return (res_len);
+}
