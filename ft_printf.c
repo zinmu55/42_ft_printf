@@ -6,11 +6,26 @@
 /*   By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 08:10:02 by skohtake          #+#    #+#             */
-/*   Updated: 2024/05/13 12:42:38 by skohtake         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:13:57 by skohtake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+// int	my_print_upperhex(int i)
+// {
+// 	int	res;
+
+// 	res = 0;
+// 	if (i == 0)
+// 	{
+// 		return (write(1, "0", 1));
+// 	}
+// 	while(i != 0)
+// 	{
+// 		write();
+// 	}
+// }
 
 char	*sub_uitoa(char *res, long long int lln, int digits)
 {
@@ -123,9 +138,10 @@ int	my_process_id(char id, va_list *list)
 	{
 		res = my_print_uint((unsigned int)va_arg(*list, unsigned int));
 	}
-	// if (id == 'x')
-	// {
-	// }
+	if (id == 'x')
+	{
+		res = my_print_upperhex((int)va_arg(*list, int));
+	}
 	// if (id == 'X')
 	// {
 	// }
