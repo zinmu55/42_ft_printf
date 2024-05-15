@@ -6,26 +6,103 @@
 /*   By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 08:10:02 by skohtake          #+#    #+#             */
-/*   Updated: 2024/05/13 15:13:57 by skohtake         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:58:43 by skohtake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// int	my_print_upperhex(int i)
-// {
-// 	int	res;
+// int	my_print_base_lower(int n, int fd, int base)	// cf:ft_putnbr
 
-// 	res = 0;
-// 	if (i == 0)
+// {
+// 	long long int lln;
+
+// 	lln = (long long int)n;
+// 	if (lln < 0)
 // 	{
-// 		return (write(1, "0", 1));
+// 		ft_putchar_fd('-', fd);
+// 		lln = -lln;
 // 	}
-// 	while(i != 0)
-// 	{
-// 		write();
-// 	}
+// 	if (lln >= 10)
+// 		ft_putnbr_fd(lln / 10, fd);
+// 	ft_putchar_fd((lln % 10) + '0', fd);
 // }
+
+int	my_write_free(char **str)
+{
+	int	res;
+
+	if (*str == NULL)
+		return (write(1, "(null)", 6));
+	res = write(1, *str, ft_strlen(*str));
+	free(*str);
+	return (res);
+}
+
+// char	*my_itohex_lower(int i, int sign, int hex_len, char **str)
+char	*my_itohex_lower(int i, int sign, int hex_len)
+{
+	char	*res;
+
+	res = (char *)ft_calloc(hex_len-- + 1, sizeof(char));
+	if (res == NULL)
+		return (NULL);
+	if (sign == 1)
+	{
+		while (hex_len >= 0)
+		{
+			if (i % 16 < 10)
+				res[hex_len--] = '0' + i % 16;
+			if (i % 16 >= 10)
+				res[hex_len--] = 'a' + i % 16 - 10;
+			i /= 16;
+		}
+	}
+	if (sign == -1)
+	{
+		i -= INT_MIN;
+		while (hex_len >= 1)
+		{
+			if (i % 16 < 10)
+				res[hex_len--] = '0' + i % 16;
+			if (i % 16 >= 10)
+				res[hex_len--] = 'a' + i % 16 - 10;
+			i /= 16;
+		}
+		if (i % 16 + 8 < 10)
+			res[hex_len--] = '0' + i % 16 + 8;
+		if (i % 16 + 8 >= 10)
+			res[hex_len--] = 'a' + i % 16 + 8 - 10;
+	}
+	return (res);
+}
+
+int	my_print_hex_lower(int i)
+{
+	int		tmp;
+	int		hex_len;
+	char	*str;
+
+	hex_len = 0;
+	tmp = i;
+	if (i == 0)
+		return (write(1, "0", 1));
+	else if (i > 0)
+	{
+		while (tmp > 0)
+		{
+			tmp /= 16;
+			hex_len++;
+		}
+		str = my_itohex_lower(i, 1, hex_len);
+	}
+	else
+	{
+		hex_len = 8;
+		str = my_itohex_lower(i, -1, hex_len);
+	}
+	return (my_write_free(&str));
+}
 
 char	*sub_uitoa(char *res, long long int lln, int digits)
 {
@@ -140,7 +217,7 @@ int	my_process_id(char id, va_list *list)
 	}
 	if (id == 'x')
 	{
-		res = my_print_upperhex((int)va_arg(*list, int));
+		res = my_print_hex_lower((int)va_arg(*list, int));
 	}
 	// if (id == 'X')
 	// {
