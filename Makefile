@@ -6,27 +6,34 @@
 #    By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 11:04:36 by yonuma            #+#    #+#              #
-#    Updated: 2024/05/11 12:36:25 by skohtake         ###   ########.fr        #
+#    Updated: 2024/05/24 14:00:30 by skohtake         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = ft_printf.c
+FILES = ft_printf.c
+
+SRCS = $(addprefix srcs/, $(FILES))
 
 OBJS = $(SRCS:.c=.o)
 
-CC = cc -c
-
-CFRAGS = -Wall -Wextra -Werror
-
 RM = rm -f
 
-INCLUDES = -I libft
+CC = cc -c
 
+CFLAGS = -Wall -Wextra -Werror
+
+INCLUDES = -I includes
+
+AR = ar rc
+
+LIBFT = libft/libft.a
 
 $(NAME) : $(OBJS)
-	ar rc $@ $^
+	make -C libft
+    cp $(LIBFT) $(NAME)
+	$(AR) $@ $^
 	ranlib $(NAME)
 
 all : $(NAME)

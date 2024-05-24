@@ -6,13 +6,13 @@
 #    By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 11:04:36 by yonuma            #+#    #+#              #
-#    Updated: 2024/05/10 10:46:06 by skohtake         ###   ########.fr        #
+#    Updated: 2024/05/24 13:35:12 by skohtake         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRCS = ft_isascii.c \
+FILES = ft_isascii.c \
 	   ft_isprint.c \
 	   ft_isalnum.c \
 	   ft_isalpha.c \
@@ -47,6 +47,8 @@ SRCS = ft_isascii.c \
 	   ft_putendl_fd.c \
 	   ft_putnbr_fd.c
 
+SRCS = $(addprefix srcs/, $(FILES))
+
 OBJS = $(SRCS:.c=.o)
 
 RM = rm -f
@@ -55,12 +57,16 @@ CC = cc -c
 
 CFRAGS = -Wall -Wextra -Werror
 
+INCLUDES = -I includes
+
+AR = ar rc
+
 $(NAME) : $(OBJS)
-	ar rc $@ $^
+	$(AR) $@ $^
 	ranlib $(NAME)
 
 %.o:%.c
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
 all : $(NAME)
 
