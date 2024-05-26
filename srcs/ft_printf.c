@@ -6,7 +6,7 @@
 /*   By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 08:10:02 by skohtake          #+#    #+#             */
-/*   Updated: 2024/05/24 14:07:01 by skohtake         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:36:21 by skohtake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,12 +169,12 @@ int	my_print_hex_lower(int i)
 	return (my_write_free(&str));
 }
 
-char	*sub_itoa(char *res, long long int lln, int digits)
+char	*sub_ptrtohex(char *res, long long int lln, int digits)
 {
 	res[digits--] = '\0';
 	while (lln != 0)
 	{
-		if(lln % 16 >= 10)
+		if (lln % 16 >= 10)
 			res[digits] = (lln % 10) + 'a';
 		else
 			res[digits] = (lln % 10) + '0';
@@ -186,13 +186,13 @@ char	*sub_itoa(char *res, long long int lln, int digits)
 
 char	*my_ptrtohex(void *ptr)
 {
-	long long int lln;
-	int digits;
-	char *res;
+	long long int	lln;
+	int				digits;
+	char			*res;
 
 	lln = (long long int)ptr;
 	digits = 1;
-	while(lln/16 != 0)
+	while (lln / 16 != 0)
 	{
 		digits++;
 		lln /= 16;
@@ -207,14 +207,19 @@ char	*my_ptrtohex(void *ptr)
 
 int	my_print_pointer(void *ptr)
 {
-	int	res;
+	int		res;
+	char	*str;
 
 	res = 0;
 	res += write(1, "0x", 2);
 	if (ptr == NULL)
 		res += write(1, "0", 1);
 	else
-		res += my_ptrtohex(ptr);
+	{
+		str = my_ptrtohex(ptr);
+		res += write(1, str, ft_strlen(str));
+		free(str);
+	}
 	return (res);
 }
 
