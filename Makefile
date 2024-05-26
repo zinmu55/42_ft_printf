@@ -6,7 +6,7 @@
 #    By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 11:04:36 by yonuma            #+#    #+#              #
-#    Updated: 2024/05/24 14:00:30 by skohtake         ###   ########.fr        #
+#    Updated: 2024/05/26 11:04:43 by skohtake         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ all : $(NAME)
 	$(CC) $(CFLAGS) $^ -o $@ $(INCLUDES)
 
 clean : 
+	make -C libft clean
 	$(RM) $(OBJS)
 
 fclean : clean
