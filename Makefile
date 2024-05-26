@@ -6,13 +6,16 @@
 #    By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 11:04:36 by yonuma            #+#    #+#              #
-#    Updated: 2024/05/26 11:04:43 by skohtake         ###   ########.fr        #
+#    Updated: 2024/05/26 12:12:55 by skohtake         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-FILES = ft_printf.c
+FILES = ft_printf.c \
+		my_print_func.c \
+		my_print_hex.c \
+		my_print_ptr.c 
 
 SRCS = $(addprefix srcs/, $(FILES))
 

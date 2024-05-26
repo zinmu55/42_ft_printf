@@ -1,33 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_print_hexadecimal.c                             :+:      :+:    :+:   */
+/*   my_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/24 10:26:11 by skohtake          #+#    #+#             */
-/*   Updated: 2024/05/24 11:01:03 by skohtake         ###   ########.fr       */
+/*   Created: 2024/05/26 12:09:20 by skohtake          #+#    #+#             */
+/*   Updated: 2024/05/26 12:23:01 by skohtake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-// //cf:ft_putnbr,youcan use unsigned long long
-// int	my_print_base_lower(int n, int fd,int base)
-
-// {
-// 	long long int lln;
-
-// 	lln = (long long int)n;
-// 	if (lln < 0)
-// 	{
-// 		ft_putchar_fd('-', fd);
-// 		lln = -lln;
-// 	}
-// 	if (lln >= 10)
-// 		ft_putnbr_fd(lln / 10, fd);
-// 	ft_putchar_fd((lln % 10) + '0', fd);
-// }
 
 int	my_write_free(char **str)
 {
@@ -168,46 +151,3 @@ int	my_print_hex_lower(int i)
 	}
 	return (my_write_free(&str));
 }
-
-char	*my_uitobase_lowercase(unsigned int ui, int base)
-{
-	char			*res;
-	long long int	lln;
-	int				digits;
-
-	lln = (long long int)ui;
-	digits = 1;
-	while (lln /= base)
-		digits++;
-	lln = (long long int)ui;
-	
-	return (res);
-}
-
-int	my_print_hex_lower(unsigned int ui)
-{
-	char	*str;
-	int		res;
-
-	str = my_uitobase_lowercase(ui, 16);
-	if (str == NULL)
-		return (0);
-	res = write(1, str, ft_strlen(str));
-	free(str);
-	return (res);
-}
-
-int	my_print_pointer(void *ptr)
-{
-	int	res;
-
-	res = 0;
-	res += write(1, "0x", 2);
-	if (ptr == NULL)
-		res += write(1, "0", 1);
-	else
-		res += my_print_hex_lower((long long unsigned int)ptr);
-	return (res);
-}
-
-////////////////////////////////////////////////////////////////////
