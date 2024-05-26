@@ -32,24 +32,26 @@ LIBFT = libft/libft.a
 
 $(NAME) : $(OBJS)
 	make -C libft
-    cp $(LIBFT) $(NAME)
+	cp $(LIBFT) $(NAME)
 	$(AR) $@ $^
 
 all : $(NAME)
 
 %.o:%.c
+	cp libft/includes/libft.h includes/
 	$(CC) $(CFLAGS) $^ -o $@ $(INCLUDES)
 
 clean : 
 	$(RM) $(OBJS)
 
 fclean : clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) includes/libft.h
 
 re : fclean all
 
 .PHONY : all clean fclean re
 
-# removing required below
+# program below needs removing to submit
+
 test : $(NAME)
 	cc test_main.c -o TEST $(NAME)
