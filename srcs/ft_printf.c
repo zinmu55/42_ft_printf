@@ -169,6 +169,42 @@ int	my_print_hex_lower(int i)
 	return (my_write_free(&str));
 }
 
+char	*sub_itoa(char *res, long long int lln, int digits)
+{
+	res[digits--] = '\0';
+	while (lln != 0)
+	{
+		if(lln % 16 >= 10)
+			res[digits] = (lln % 10) + 'a';
+		else
+			res[digits] = (lln % 10) + '0';
+		lln /= 10;
+		digits--;
+	}
+	return (res);
+}
+
+char	*my_ptrtohex(void *ptr)
+{
+	long long int lln;
+	int digits;
+	char *res;
+
+	lln = (long long int)ptr;
+	digits = 1;
+	while(lln/16 != 0)
+	{
+		digits++;
+		lln /= 16;
+	}
+	lln = (long long int)ptr;
+	res = (char *)malloc(sizeof(char) * digits + 1);
+	if (res == NULL)
+		return (NULL);
+	res = sub_ptrtohex(res, lln, digits);
+	return (res);
+}
+
 int	my_print_pointer(void *ptr)
 {
 	int	res;
@@ -178,7 +214,7 @@ int	my_print_pointer(void *ptr)
 	if (ptr == NULL)
 		res += write(1, "0", 1);
 	else
-		res += my_print_hex_lower((int)ptr);
+		res += my_ptrtohex(ptr);
 	return (res);
 }
 
