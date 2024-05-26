@@ -34,7 +34,6 @@ $(NAME) : $(OBJS)
 	make -C libft
     cp $(LIBFT) $(NAME)
 	$(AR) $@ $^
-	ranlib $(NAME)
 
 all : $(NAME)
 

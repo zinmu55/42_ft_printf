@@ -63,7 +63,6 @@ AR = ar rc
 
 $(NAME) : $(OBJS)
 	$(AR) $@ $^
-	ranlib $(NAME)
 
 %.o:%.c
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
