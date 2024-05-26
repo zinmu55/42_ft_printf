@@ -55,7 +55,7 @@ RM = rm -f
 
 CC = cc -c
 
-CFRAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 INCLUDES = -I includes
 
