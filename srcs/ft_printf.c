@@ -6,7 +6,7 @@
 /*   By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 08:10:02 by skohtake          #+#    #+#             */
-/*   Updated: 2024/05/26 10:36:21 by skohtake         ###   ########.fr       */
+/*   Updated: 2024/05/26 10:57:55 by skohtake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,10 +175,10 @@ char	*sub_ptrtohex(char *res, long long int lln, int digits)
 	while (lln != 0)
 	{
 		if (lln % 16 >= 10)
-			res[digits] = (lln % 10) + 'a';
+			res[digits] = (lln % 16) + 'a';
 		else
-			res[digits] = (lln % 10) + '0';
-		lln /= 10;
+			res[digits] = (lln % 16) + '0';
+		lln /= 16;
 		digits--;
 	}
 	return (res);
@@ -186,22 +186,22 @@ char	*sub_ptrtohex(char *res, long long int lln, int digits)
 
 char	*my_ptrtohex(void *ptr)
 {
-	long long int	lln;
-	int				digits;
-	char			*res;
+	unsigned long long int	ulln;
+	int						digits;
+	char					*res;
 
-	lln = (long long int)ptr;
+	ulln = (unsigned long long int)ptr;
 	digits = 1;
-	while (lln / 16 != 0)
+	while (ulln / 16 != 0)
 	{
 		digits++;
-		lln /= 16;
+		ulln /= 16;
 	}
-	lln = (long long int)ptr;
+	ulln = (unsigned long long int)ptr;
 	res = (char *)malloc(sizeof(char) * digits + 1);
 	if (res == NULL)
 		return (NULL);
-	res = sub_ptrtohex(res, lln, digits);
+	res = sub_ptrtohex(res, ulln, digits);
 	return (res);
 }
 
