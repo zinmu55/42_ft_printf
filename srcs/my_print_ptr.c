@@ -6,7 +6,7 @@
 /*   By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:11:20 by skohtake          #+#    #+#             */
-/*   Updated: 2024/05/26 12:23:04 by skohtake         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:44:57 by skohtake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ char	*my_ptrtohex(void *ptr)
 
 int	my_print_ptr(void *ptr)
 {
-	int res;
-	char *str;
+	int		res;
+	char	*str;
 
 	res = 0;
 	res += write(1, "0x", 2);

@@ -6,7 +6,7 @@
 /*   By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:09:20 by skohtake          #+#    #+#             */
-/*   Updated: 2024/05/26 12:23:01 by skohtake         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:10:39 by skohtake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,3 +151,64 @@ int	my_print_hex_lower(int i)
 	}
 	return (my_write_free(&str));
 }
+
+// // char	*my_itohex_lower(int i, int sign, int hex_len, char **str)
+// char	*my_itohex_lower(int i, int sign, int hex_len)
+// {
+// 	char	*res;
+
+// 	res = (char *)ft_calloc(hex_len-- + 1, sizeof(char));
+// 	if (res == NULL)
+// 		return (NULL);
+// 	if (sign == 1)
+// 	{
+// 		while (hex_len >= 0)
+// 		{
+// 			if (i % 16 < 10)
+// 				res[hex_len--] = '0' + i % 16;
+// 			if (i % 16 >= 10)
+// 				res[hex_len--] = 'a' + i % 16 - 10;
+// 			i /= 16;
+// 		}
+// 	}
+// 	// if (sign == -1)
+// 	// {
+// 	// 	i -= INT_MIN;
+// 	// 	while (hex_len >= 1)
+// 	// 	{
+// 	// 		if (i % 16 < 10)
+// 	// 			res[hex_len--] = '0' + i % 16;
+// 	// 		if (i % 16 >= 10)
+// 	// 			res[hex_len--] = 'a' + i % 16 - 10;
+// 	// 		i /= 16;
+// 	// 	}
+// 	// 	if (i % 16 + 8 < 10)
+// 	// 		res[hex_len--] = '0' + i % 16 + 8;
+// 	// 	if (i % 16 + 8 >= 10)
+// 	// 		res[hex_len--] = 'a' + i % 16 + 8 - 10;
+// 	// }
+// 	return (res);
+// }
+
+// int	my_print_hex_lower(int i)
+// {
+// 	long long int	tmp;
+// 	int				hex_len;
+// 	char			*str;
+
+// 	hex_len = 0;
+// 	tmp = (unsigned)i;
+// 	if (i == 0)
+// 		return (write(1, "0", 1));
+// 	while (tmp > 0)
+// 	{
+// 		tmp /= 16;
+// 		hex_len++;
+// 	}
+// 	str = my_itohex_lower(i, 1, hex_len);
+// 	if (str == NULL)
+// 		return (write(1, "(null)", 6));
+// 	tmp = write(1, str, ft_strlen(str));
+// 	free(str);
+// 	return (tmp);
+// }
