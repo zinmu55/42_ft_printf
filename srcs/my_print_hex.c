@@ -6,7 +6,7 @@
 /*   By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:09:20 by skohtake          #+#    #+#             */
-/*   Updated: 2024/05/29 14:10:39 by skohtake         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:41:02 by skohtake         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int	my_print_hex_upper(int i)
 	return (my_write_free(&str));
 }
 
-// char	*my_itohex_lower(int i, int sign, int hex_len, char **str)
 char	*my_itohex_lower(int i, int sign, int hex_len)
 {
 	char	*res;
@@ -152,7 +151,6 @@ int	my_print_hex_lower(int i)
 	return (my_write_free(&str));
 }
 
-// // char	*my_itohex_lower(int i, int sign, int hex_len, char **str)
 // char	*my_itohex_lower(int i, int sign, int hex_len)
 // {
 // 	char	*res;
