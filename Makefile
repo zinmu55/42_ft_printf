@@ -6,7 +6,7 @@
 #    By: skohtake <skohtake@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 11:04:36 by yonuma            #+#    #+#              #
-#    Updated: 2024/05/26 12:12:55 by skohtake         ###   ########.fr        #
+#    Updated: 2024/06/11 12:05:49 by skohtake         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,9 @@ clean :
 	make -C libft clean
 	$(RM) $(OBJS)
 
-fclean : clean
+fclean :
+	make -C libft fclean
+	make clean
 	$(RM) $(NAME) includes/libft.h
 
 re : fclean all
